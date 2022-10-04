@@ -9,6 +9,7 @@
 #include "db_parser.h"
 #include "product_parser.h"
 #include "util.h"
+#include "mydatastore.h"
 
 using namespace std;
 struct ProdNameSorter {
@@ -29,7 +30,8 @@ int main(int argc, char* argv[])
      * Declare your derived DataStore object here replacing
      *  DataStore type to your derived type
      ****************/
-    DataStore ds;
+    MyDataStore ds;
+
 
 
 
@@ -100,10 +102,38 @@ int main(int argc, char* argv[])
                 done = true;
             }
 	    /* Add support for other commands here */
-
-
-
-
+			else if (cmd == "ADD"){ //adding to cart
+				string username;
+				unsigned int hitnumber = 0;
+				ss >> username;
+				ss >> hitnumber;
+				if (hitnumber < 1 || hitnumber > hits.size()){ //adding invalid hit number
+					cout << "Invalid request." << endl;
+				}
+				else{
+					cout << "Adding hit " << hitnumber << " to " << username << "'s cart." << endl;
+					ds.addToCart(convToLower(username), hits[hitnumber - 1]);
+				}
+			}
+			else if(cmd == "VIEWCART"){ //viewing cart
+				string username;
+				ss >> username;
+				cout << "Viewing " << username << "'s cart." << endl;
+				ds.viewCart(convToLower(username));
+			}
+			else if(cmd == "BUYCART"){ //buying cart
+				string username;
+				ss >> username;
+				cout << "Buying " << username << "'s cart." << endl;
+				ds.buyCart(convToLower(username));
+			}
+			else if (cmd == "QUIT"){ //writing edited database to empty file
+				string filename;
+				ss >> filename;
+				ofstream output(filename.c_str()); //converting to string
+				ds.dump(output);
+				output.close();
+			}
             else {
                 cout << "Unknown command" << endl;
             }

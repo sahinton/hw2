@@ -3,6 +3,8 @@
 #include "util.h"
 #include <set>
 #include <string>
+#include <cmath>
+#include <iomanip>
 using namespace std;
 
 Book::Book(const std::string category, const std::string name, double price, int qty, std::string author, std::string isbn) : 
@@ -12,10 +14,9 @@ Book::Book(const std::string category, const std::string name, double price, int
 }
 
 set<string> Book::keywords() const{
-	set<string> keywords = parseStringToWords(name_);
-	for (set<string>::iterator it = parseStringToWords(author_).begin(); it != parseStringToWords(author_).end(); ++it){
-		keywords.insert(*it);
-	}
+	set<string> keywords = parseStringToWords(convToLower(name_));
+	set<string> authorWords = parseStringToWords(convToLower(author_));
+	keywords = setUnion(keywords, authorWords);
 	keywords.insert(isbn_);
 	return keywords;
 }
@@ -24,8 +25,8 @@ string Book::displayString() const{
 	string info;
 	info += name_ + "\n";
 	info += "Author: " + author_ + " ISBN: " + isbn_ + "\n";
-	info += to_string(price_) + " " + to_string(qty_) + " left.\n";
-	cout << info;
+	string price = to_string(price_);
+	info += price.substr(0, price.length() - 4) + " " + to_string(qty_) + " left.\n";
 	return info;
 }
 

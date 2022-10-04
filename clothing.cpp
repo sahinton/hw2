@@ -12,10 +12,9 @@ Clothing::Clothing(const std::string category, const std::string name, double pr
 }
 
 set<string> Clothing::keywords() const{
-	set<string> keywords = parseStringToWords(name_);
-	for (set<string>::iterator it = parseStringToWords(brand_).begin(); it != parseStringToWords(brand_).end(); ++it){
-		keywords.insert(*it);
-	}
+	set<string> keywords = parseStringToWords(convToLower(name_));
+	set<string> brandWords = parseStringToWords(convToLower(brand_));
+	keywords = setUnion(keywords, brandWords);
 	return keywords;
 }
 
@@ -23,8 +22,8 @@ string Clothing::displayString() const{
 	string info;
 	info += name_ + "\n";
 	info += "Size: " + size_ + " Brand: " + brand_ + "\n";
-	info += to_string(price_) + " " + to_string(qty_) + " left.\n";
-	cout << info;
+	string price = to_string(price_);
+	info += price.substr(0, price.length() - 4) + " " + to_string(qty_) + " left.\n";
 	return info;
 }
 

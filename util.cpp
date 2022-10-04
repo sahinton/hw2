@@ -18,7 +18,7 @@ std::set<std::string> parseStringToWords(string rawWords)
     std::set<std::string> searchTerms;
     std::string word;
     for (unsigned int i= 0; i < rawWords.length(); i++){
-        if (isalpha(rawWords[i])){
+        if (isalpha(rawWords[i])){ //only letter
             word += rawWords[i];
         }
         else if (word.length() > 1){

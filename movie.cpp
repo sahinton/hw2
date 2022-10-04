@@ -11,10 +11,9 @@ Movie::Movie(const std::string category, const std::string name, double price, i
 	rating_ = rating;
 }
 set<string> Movie::keywords() const{
-	set<string> keywords = parseStringToWords(name_);
-	for (set<string>::iterator it = parseStringToWords(genre_).begin(); it != parseStringToWords(genre_).end(); ++it){
-		keywords.insert(*it);
-	}
+	set<string> keywords = parseStringToWords(convToLower(name_));
+	set<string> genreWords = parseStringToWords(convToLower(genre_));
+	keywords = setUnion(keywords, genreWords);
 	return keywords;
 }
 
@@ -22,8 +21,8 @@ string Movie::displayString() const{
 	string info;
 	info += name_ + "\n";
 	info += "Genre: " + genre_ + " Rating: " + rating_ + "\n";
-	info += to_string(price_) + " " + to_string(qty_) + " left.\n";
-	cout << info;
+	string price = to_string(price_);
+	info += price.substr(0, price.length() - 4) + " " + to_string(qty_) + " left.\n";
 	return info;
 }
 

@@ -1,5 +1,6 @@
 #include <sstream>
 #include <iomanip>
+#include <iostream>
 #include "product.h"
 
 using namespace std;
@@ -31,7 +32,7 @@ std::string Product::getName() const
 
 void Product::subtractQty(int num)
 {
-    qty_ -= num;
+  qty_ -= num;
 }
 
 int Product::getQty() const
