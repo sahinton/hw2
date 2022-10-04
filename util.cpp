@@ -17,21 +17,22 @@ std::set<std::string> parseStringToWords(string rawWords)
 {
     std::set<std::string> searchTerms;
     std::string word;
-    for (unsigned int i= 0; i < rawWords.length(); i++){
-        if (isalpha(rawWords[i])){ //only letter
-            word += rawWords[i];
-        }
-        else if (word.length() > 1){
-            searchTerms.insert(word);
-            word = "\0";
-        }
-        else{
-            word = "\0";
-        }
-    }
+		unsigned int i = 0;
+		while(i < rawWords.length()){ 
+			while(isalpha(rawWords[i])){ //only letters
+				word += rawWords[i];
+				i++;		
+			}	
+			if (word.length() > 1){ //only words > 1 letter
+				searchTerms.insert(word);
+				word = "";
+			}
+			else{ //reset word
+				word = "";
+			}
+			i++;
+		}
     return searchTerms;
-
-
 }
 
 /**************************************************
