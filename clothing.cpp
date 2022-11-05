@@ -27,14 +27,14 @@ string Clothing::displayString() const{
 	return info;
 }
 
-void Clothing::dump(){
-	string info;
-	info += category_ + "\n";
-	info += name_ + "\n";
-	info += to_string(price_) + "\n";
-	info += to_string(qty_) + "\n";
-	info += size_ + "\n";
-	info += brand_ + "\n";
-	cout << info;
+void Clothing::dump(std::ostream& os) const{
+	//string info;
+	os << category_ + "\n";
+	os << name_ + "\n";
+	os << to_string(price_) + "\n";
+	os << to_string(qty_) + "\n";
+	os << size_ + "\n";
+	os << brand_ + "\n";
+	//cout << info;
 	return;
 }

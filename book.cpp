@@ -30,14 +30,14 @@ string Book::displayString() const{
 	return info;
 }
 
-void Book::dump(){
-	string info;
-	info += category_ + "\n";
-	info += name_ + "\n";
-	info += to_string(price_) + "\n";
-	info += to_string(qty_) + "\n";
-	info += isbn_ + "\n";
-	info += author_ + "\n";
-	cout << info;
+void Book::dump(std::ostream& os) const{
+	//string info;
+	os << category_ + "\n";
+	os << name_ + "\n";
+	os << to_string(price_) + "\n";
+	os << to_string(qty_) + "\n";
+	os << isbn_ + "\n";
+	os << author_ + "\n";
+	//cout << info;
 	return;
 }

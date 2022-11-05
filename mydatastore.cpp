@@ -5,6 +5,9 @@
 #include "user.h"
 #include "mydatastore.h"
 #include "util.h"
+#include "book.h"
+#include "movie.h"
+#include "clothing.h"
 
 
 using namespace std;
@@ -85,7 +88,7 @@ void MyDataStore::dump(std::ostream& ofile){
 
 void MyDataStore::addToCart(string username, Product* p){
 	if (users_.find(username) == users_.end()){ //valid username check
-		cout << "Invalid username" << endl;
+		cout << "Invalid request" << endl;
 		return;
 	}
 	else{
@@ -95,15 +98,15 @@ void MyDataStore::addToCart(string username, Product* p){
 
 void MyDataStore::viewCart(string username){
 	if (users_.find(username) == users_.end()){ //valid username check
-		cout << "Invalid Username" << endl;
+		cout << "Invalid username" << endl;
 		return;
 	}
 	else{ //display string for all items in cart
-		int setSize = cart_[username].size();
+		int setSize = 1;
 		for(vector<Product*>::iterator it = cart_[username].begin(); it != cart_[username].end(); ++it){
-			cout << setSize << " ";
+			cout << "Item " << setSize << "\n";
 			cout << (*it)->displayString();
-			setSize--;
+			setSize++;
 		}
 	}
 }

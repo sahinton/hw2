@@ -108,23 +108,23 @@ int main(int argc, char* argv[])
 				ss >> username;
 				ss >> hitnumber;
 				if (hitnumber < 1 || hitnumber > hits.size()){ //adding invalid hit number
-					cout << "Invalid request." << endl;
+					cout << "Invalid request" << endl;
 				}
 				else{
-					cout << "Adding hit " << hitnumber << " to " << username << "'s cart." << endl;
+					//cout << "Adding hit " << hitnumber << " to " << username << "'s cart." << endl;
 					ds.addToCart(convToLower(username), hits[hitnumber - 1]);
 				}
 			}
 			else if(cmd == "VIEWCART"){ //viewing cart
 				string username;
 				ss >> username;
-				cout << "Viewing " << username << "'s cart." << endl;
+				//cout << "Viewing " << username << "'s cart." << endl;
 				ds.viewCart(convToLower(username));
 			}
 			else if(cmd == "BUYCART"){ //buying cart
 				string username;
 				ss >> username;
-				cout << "Buying " << username << "'s cart." << endl;
+				//cout << "Buying " << username << "'s cart." << endl;
 				ds.buyCart(convToLower(username));
 			}
 			else if (cmd == "QUIT"){ //writing edited database to empty file

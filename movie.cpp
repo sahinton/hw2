@@ -26,14 +26,14 @@ string Movie::displayString() const{
 	return info;
 }
 
-void Movie::dump(){
-	string info;
-	info += category_ + "\n";
-	info += name_ + "\n";
-	info += to_string(price_) + "\n";
-	info += to_string(qty_) + "\n";
-	info += genre_ + "\n";
-	info += rating_ + "\n";
-	cout << info;
+void Movie::dump(std::ostream& os) const{
+	//string info;
+	os << category_ << "\n";
+	os << name_ << "\n";
+	os << to_string(price_) + "\n";
+	os << to_string(qty_) + "\n";
+	os << genre_ + "\n";
+	os << rating_ + "\n";
+	//cout << info;
 	return;
 }

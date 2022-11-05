@@ -13,7 +13,7 @@ class Clothing : public Product{
 		Clothing(const std::string category, const std::string name, double price, int qty, std::string brand, std::string size);
 		std::set<std::string> keywords() const;
 		std::string displayString() const;
-		void dump();
+		void dump(std::ostream& os) const;
 	private:
 		std::string brand_;
 		std::string size_;
